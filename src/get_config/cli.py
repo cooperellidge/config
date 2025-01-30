@@ -1,4 +1,3 @@
-import shutil
 from pathlib import Path
 
 import requests
@@ -6,7 +5,9 @@ import typer
 
 app = typer.Typer()
 
-GITHUB_BASE_URL = "https://raw.githubusercontent.com/cooperellidge/get-config/main/config"
+GITHUB_BASE_URL = (
+    "https://raw.githubusercontent.com/cooperellidge/get-config/main/config"
+)
 
 
 def download_and_place_file(tech: str, config: str, *, force: bool) -> None:  # noqa: D103

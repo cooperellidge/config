@@ -12,11 +12,6 @@ clean:
 	find ./src | grep -E "(\.pyc$$)" | xargs rm -rf
 	find ./src | grep -E "(\.pyo$$)" | xargs rm -rf
 
-
-	find ./tests | grep -E "(__pycache__$$)" | xargs rm -rf
-	find ./tests | grep -E "(\.pyc$$)" | xargs rm -rf
-	find ./tests | grep -E "(\.pyo$$)" | xargs rm -rf
-
 	rm -vrf .mypy_cache
 	rm -vrf .pytest_cache
 	rm -vrf .ruff_cache
@@ -25,28 +20,23 @@ clean:
 
 .PHONY: check-format
 check-format: ##  Check formatting, but do not fix
-	uv run ruff format src tests --check
+	uv run ruff format src --check
 
 .PHONY: format
 format: ##  Fix imports and formatting
 	uv run ruff check --fix --select I 
-	uv run ruff format src tests
+	uv run ruff format src
 
 .PHONY: types
 types:  # Run the type checker
 	uv run mypy src
-	uv run mypy tests
 
 .PHONY: lint
 lint:  ## Run the linter
-	uv run ruff check src tests
+	uv run ruff check src
 
-.PHONY: test
-test:  ## Run unit tests
-	uv run pytest tests
-
-.PHONY: check  ## Run static checks (format, types, lint, tests)
-check: format types lint test
+.PHONY: check  ## Run static checks (format, types, lint)
+check: format types lint
 
 .PHONY: build-docs
 build-docs:  ## Build documentation in the ./out directory
@@ -64,7 +54,6 @@ set-version: ## Change version by passing in "v=x.y.z", updating pyproject.toml,
     fi
 
 	sed -i '' 's/^version *= *".*"/version = "$(v)"/' pyproject.toml
-	sed -i '' 's/^__version__ *= *".*"/__version__ = "$(v)"/' src/dagster_gitlab/__init__.py
+	sed -i '' 's/^__version__ *= *".*"/__version__ = "$(v)"/' src/get_config/__init__.py
 
-	uv lock --upgrade-package dagster-gitlab
-
+	uv lock --upgrade-package get-config

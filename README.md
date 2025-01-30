@@ -26,9 +26,8 @@ Essentially the CLI just downloads the file from GitHub and places it correctly 
 ## Install
 
 ```sh
-# Install into dedicated environment with pipx or uvx
-pipx install config-getter
-uvx install config-getter
+# Run in a temporary environment with uvx
+uvx config-getter <TECH> <CONFIG>
 
 # Install from source
 git clone https://github.com/cooperellidge/get-config.git

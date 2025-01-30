@@ -22,8 +22,8 @@ def download_and_place_file(tech: str, config: str, *, force: bool) -> None:  # 
         typer.echo(f"Warning: {config} already exists. Use --force to overwrite.")
         raise typer.Exit(code=1)
 
-    with dest_path.open("wb") as f:
-        shutil.copyfileobj(response.raw, f)
+    with dest_path.open("w", encoding="utf-8") as f:
+        f.write(response.text)
 
     typer.echo(f"{config} for {tech} added successfully!")
 

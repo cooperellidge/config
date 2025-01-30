@@ -35,8 +35,8 @@ types:  # Run the type checker
 lint:  ## Run the linter
 	uv run ruff check src
 
-.PHONY: check  ## Run static checks (format, types, lint)
-check: format types lint
+.PHONY: check
+check: format types lint  ## Run static checks (format, types, lint)
 
 .PHONY: build-docs
 build-docs:  ## Build documentation in the ./out directory

@@ -1,6 +1,6 @@
 [project]
 name = "config-getter"
-version = "0.0.1"
+version = "0.0.2"
 description = "Get common config for different types of projects "
 readme = "README.md"
 authors = [{ name = "Cooper Ellidge", email = "cooper.ellidge@gmail.com" }]
@@ -8,7 +8,7 @@ requires-python = ">=3.13"
 dependencies = ["requests>=2.32.3", "typer>=0.15.1"]
 
 [project.scripts]
-get-conf = "config_getter.cli:app"
+config-getter = "config_getter.cli:app"
 
 [build-system]
 requires = ["hatchling"]

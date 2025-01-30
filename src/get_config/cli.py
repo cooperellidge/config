@@ -6,7 +6,7 @@ import typer
 
 app = typer.Typer()
 
-GITHUB_BASE_URL = "https://raw.githubusercontent.com/cooperellidge/config/main/config"
+GITHUB_BASE_URL = "https://raw.githubusercontent.com/cooperellidge/get-config/main/config"
 
 
 def download_and_place_file(tech: str, config: str, *, force: bool) -> None:  # noqa: D103
@@ -17,10 +17,16 @@ def download_and_place_file(tech: str, config: str, *, force: bool) -> None:  # 
         typer.echo(f"Error: Could not download {config} for {tech}")
         raise typer.Exit(code=1)
 
-    dest_path = Path.cwd() / config
+    path = Path(config)
+
+    dest_path = Path.cwd() / path
+
     if dest_path.exists() and not force:
         typer.echo(f"Warning: {config} already exists. Use --force to overwrite.")
         raise typer.Exit(code=1)
+
+    if not dest_path.parent.exists():
+        dest_path.parent.mkdir(parents=True, exist_ok=True)
 
     with dest_path.open("w", encoding="utf-8") as f:
         f.write(response.text)

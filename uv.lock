@@ -54,7 +54,7 @@ wheels = [
 ]
 
 [[package]]
-name = "get-config"
+name = "get-conf"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

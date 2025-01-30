@@ -1,5 +1,5 @@
 [project]
-name = "get-config"
+name = "get-conf"
 version = "0.1.0"
 description = "Get common config for different types of projects "
 readme = "README.md"
@@ -8,7 +8,7 @@ requires-python = ">=3.13"
 dependencies = ["requests>=2.32.3", "typer>=0.15.1"]
 
 [project.scripts]
-get-config = "get_config.cli:app"
+get-conf = "get_conf.cli:app"
 
 [build-system]
 requires = ["hatchling"]

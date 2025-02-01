@@ -14,7 +14,6 @@ GITHUB_API_URL = (
 
 ALIASES = {
     "github": ".github",
-    "ci": ".github/workflows",
 }
 
 
@@ -111,12 +110,18 @@ def main(
     resolved_config = resolve_alias(config)
     contents = fetch_directory_contents(tech, resolved_config)
 
-    if contents and any(item["type"] == "dir" for item in contents):
+    # TODO: test unbalanced directories, e.g.
+    # root/
+    # ├── dir1/
+    # │   └── file1
+    # └── dir2/
+    #     ├── dir3/
+    #     │   └── file2
+    #     ├── file3
+    #     └── file2
+
+    if len(contents) > 1:
         typer.echo(f"Downloading directory '{resolved_config}' for {tech}...")
         download_directory(tech, resolved_config, force=force, depth=depth)
     else:
         download_file(tech, resolved_config, force=force)
-
-
-if __name__ == "__main__":
-    app()

@@ -1,6 +1,6 @@
 [project]
 name = "config-getter"
-version = "0.0.3"
+version = "0.0.4"
 description = "Get common config for different types of projects"
 readme = "README.md"
 license = { text = "MIT License" }

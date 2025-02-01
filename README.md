@@ -37,9 +37,7 @@ config-getter <TECH> <CONFIG>
 
 ## Future work
 
-- Get directories full of configuration, e.g. `.github/workflows`
 - Appending configuration to existing files, including JSON
-- Aliases, e.g. `github` = `.github/workflows/*`
 - Custom configuration, e.g. point to other GitHub sources
 - Templating, so that you can pre-fill templates with things like project names
 - Documentation website, MkDocs hosted on GitHub Pages

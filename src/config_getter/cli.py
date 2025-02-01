@@ -50,8 +50,12 @@ def fetch_directory_contents(tech: str, directory: str) -> list[dict]:
             f"Error: Could not fetch directory listing for {directory} in {tech}"
         )
         return []
+    resp = response.json()
 
-    return response.json()
+    if isinstance(resp, dict):
+        return [resp]
+
+    return resp
 
 
 def download_directory(
